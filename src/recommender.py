@@ -1,5 +1,5 @@
 from typing import List, Dict, Tuple, Optional
-from dataclasses import dataclass
+from dataclasses import dataclass, asdict
 import csv
 
 @dataclass
@@ -42,12 +42,35 @@ class Recommender:
         self.songs = songs
 
     def recommend(self, user: UserProfile, k: int = 5) -> List[Song]:
-        # TODO: Implement recommendation logic
-        return self.songs[:k]
+        user_prefs = {
+            "genre": user.favorite_genre,
+            "mood": user.favorite_mood,
+            "energy": user.target_energy,
+            "tempo_bpm": user.target_tempo_bpm,
+            "valence": user.target_valence,
+            "danceability": user.target_danceability,
+            "likes_acoustic": user.likes_acoustic,
+        }
+
+        scored_songs = [
+            (song, score_song(user_prefs, asdict(song))[0])
+            for song in self.songs
+        ]
+        scored_songs.sort(key=lambda item: item[1], reverse=True)
+        return [song for song, _ in scored_songs[:k]]
 
     def explain_recommendation(self, user: UserProfile, song: Song) -> str:
-        # TODO: Implement explanation logic
-        return "Explanation placeholder"
+        user_prefs = {
+            "genre": user.favorite_genre,
+            "mood": user.favorite_mood,
+            "energy": user.target_energy,
+            "tempo_bpm": user.target_tempo_bpm,
+            "valence": user.target_valence,
+            "danceability": user.target_danceability,
+            "likes_acoustic": user.likes_acoustic,
+        }
+        _, reasons = score_song(user_prefs, asdict(song))
+        return ", ".join(reasons)
 
 def load_songs(csv_path: str) -> List[Dict]:
     """

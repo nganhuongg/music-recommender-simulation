@@ -17,16 +17,26 @@ def main() -> None:
     print(f"Loaded songs: {len(songs)}")
 
     user_prefs = {
-        "genre": "pop",
-        "mood": "happy",
-        "energy": 0.8,
-        "tempo_bpm": 120,
-        "valence": 0.8,
-        "danceability": 0.8,
-        "likes_acoustic": False,
+    "genre": "folk",
+    "mood": "playful",
+    "energy": 0.85,
+    "tempo_bpm": 128,
+    "valence": 0.88,
+    "danceability": 0.90,
+    "likes_acoustic": True,
     }
 
+
     recommendations = recommend_songs(user_prefs, songs, k=5)
+
+    print("\nUser profile:\n")
+    print(f"  Genre: {user_prefs['genre']}")
+    print(f"  Mood: {user_prefs['mood']}")
+    print(f"  Target energy: {user_prefs['energy']:.2f}")
+    print(f"  Target tempo: {user_prefs['tempo_bpm']:.0f} BPM")
+    print(f"  Target valence: {user_prefs['valence']:.2f}")
+    print(f"  Target danceability: {user_prefs['danceability']:.2f}")
+    print(f"  Likes acoustic: {user_prefs['likes_acoustic']}")
 
     print("\nTop recommendations:\n")
     divider = "-" * 72
