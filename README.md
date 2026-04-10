@@ -17,17 +17,17 @@ Replace this paragraph with your own summary of what your version does.
 
 ## How The System Works
 
-Explain your design in plain language.
+Real-world recommendation systems usually combine many signals at once. Platforms like Spotify or YouTube learn from large amounts of behavior data such as plays, skips, likes, watch time, repeated listening, and what similar users enjoyed next. They often retrieve a large set of possible candidates, score each item with machine learning models, and then rank the list while balancing relevance, novelty, and variety. In other words, real systems do not just ask whether a song is "good"; they ask whether it is a good fit for a particular person at a particular moment.
 
-Some prompts to answer:
+This project uses a simpler and more transparent content-based recommender. Instead of learning from the behavior of many users, it recommends songs by comparing the attributes of each song to one user's stated preferences. Each `Song` includes features such as `genre`, `mood`, `energy`, `tempo_bpm`, `valence`, `danceability`, and `acousticness`. The `UserProfile` was expanded beyond genre, mood, and energy to also include `target_tempo_bpm`, `target_valence`, and `target_danceability`. I added these values because genre and mood alone are too coarse: they can separate something like chill lofi from intense rock, but they do not capture finer differences such as cheerful versus melancholy songs, fast versus steady songs, or groove-heavy versus more atmospheric songs.
 
-- What features does each `Song` use in your system
-  - For example: genre, mood, energy, tempo
-- What information does your `UserProfile` store
-- How does your `Recommender` compute a score for each song
-- How do you choose which songs to recommend
+The workflow is: input a user's taste profile, loop through every song in `songs.csv`, score each song against the profile, sort all songs by score, and return the top `k` results. The scoring rule rewards songs that are closer to the user's preferred values, not just songs with higher numbers. Exact matches on categorical features like genre and mood add bonus points, while numerical features are scored by closeness to the user's target. For example, a song with energy near the user's target energy should score higher than one that is much lower or much higher. This means the system prioritizes interpretable matches: similar vibe first, then the closest overall fit across the remaining features.
 
-You can include a simple diagram or bullet list if helpful.
+![Workflow diagram](images/workflow.png)
+
+The current weighting strategy is designed so that numeric vibe features lead and categorical labels refine the result. A reasonable starting point is `energy = 3.0`, `tempo_bpm = 2.5`, `danceability = 2.0`, `genre = 2.0`, `mood = 2.0`, `valence = 1.5`, and `acousticness = 1.5`. `Energy` and `tempo_bpm` are weighted the most because they strongly separate low-key tracks from intense ones in this dataset. `Danceability` also matters because it helps identify whether a song feels groove-driven or more reflective. `Genre` and `mood` still matter, but they are not given overwhelming weight because the dataset has many one-off labels, and exact matches would otherwise dominate too much. `Valence` and `acousticness` are useful secondary signals that help describe emotional tone and sonic texture.
+
+This system also has clear biases. Because `energy` and `tempo_bpm` have the largest weights, the recommender may over-prioritize the overall intensity of a song and underrate songs that match the user's genre or emotional taste in a subtler way. Exact genre and mood matching can also be brittle because many labels appear only once, which may make the system treat similar songs as different just because they use different tags. The model does not understand lyrics, cultural context, language, or changing mood over time, and it assumes that a user's taste can be summarized by a small fixed profile. That makes the system easy to explain, but less flexible and potentially less fair than a richer real-world recommender.
 
 ---
 
@@ -63,6 +63,16 @@ pytest
 ```
 
 You can add more tests in `tests/test_recommender.py`.
+
+---
+
+## Example Results
+
+These screenshots show sample terminal output from the recommender after scoring songs, sorting them by total score, and returning the top matches.
+
+![Recommendation result 1](images/result1.png)
+
+![Recommendation result 2](images/result2.png)
 
 ---
 

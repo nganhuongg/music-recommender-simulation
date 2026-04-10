@@ -9,3 +9,28 @@ id,title,artist,genre,mood,energy,tempo_bpm,valence,danceability,acousticness
 8,Night Drive Loop,Neon Echo,synthwave,moody,0.75,110,0.49,0.73,0.22
 9,Focus Flow,LoRoom,lofi,focused,0.40,80,0.59,0.60,0.78
 10,Rooftop Lights,Indigo Parade,indie pop,happy,0.76,124,0.81,0.82,0.35
+11,City Cipher,Ash Meridian,hip hop,confident,0.81,96,0.62,0.84,0.12
+12,Velvet Letters,Sable June,r&b,romantic,0.58,88,0.74,0.69,0.44
+13,Golden Dust Trail,Pine Harbor,folk,nostalgic,0.33,92,0.68,0.49,0.93
+14,Cathedral Echoes,Aurelia Strings,classical,serene,0.22,64,0.57,0.18,0.98
+15,Neon Afterglow,Prism Static,edm,euphoric,0.94,128,0.79,0.91,0.04
+16,Ocean Lanterns,Blue Marula,reggae,uplifting,0.55,82,0.83,0.77,0.58
+17,Iron Anthem,Black Foundry,metal,aggressive,0.97,168,0.39,0.51,0.03
+18,Porchlight Reverie,June Hollow,country,tender,0.46,100,0.72,0.57,0.74
+19,Velvet Sunrise,Mar y Sol,latin,playful,0.78,116,0.86,0.89,0.21
+20,Pulse District,Static Avenue,house,energetic,0.89,124,0.71,0.90,0.06
+21,Afterimage Theory,Null Harbor,techno,hypnotic,0.85,130,0.41,0.74,0.08
+22,Paper Hearts Motel,Silver Season,dream pop,dreamy,0.52,98,0.66,0.63,0.55
+23,Riverstone Prayer,Mika Vale,soul,soulful,0.61,84,0.76,0.64,0.67
+24,Midtown Strut,Bronze Avenue,funk,groovy,0.74,112,0.82,0.87,0.19
+25,Smoke and Static,Harbor Grey,blues,melancholic,0.43,76,0.34,0.46,0.88
+26,Weekend Riot,Crimson Relay,punk,rebellious,0.95,176,0.58,0.67,0.05
+27,Starlight Routine,Luna Arcade,k-pop,bright,0.87,122,0.88,0.93,0.14
+28,Saffron Skies,Kito Bloom,afrobeat,warm,0.73,108,0.85,0.86,0.24
+29,Low Tide Cinema,Obsidian Coast,trip hop,mysterious,0.48,90,0.38,0.59,0.63
+30,Summit Signal,North Atlas,orchestral,triumphant,0.69,118,0.64,0.42,0.72
+31,Glasshouse Waltz,Rio Celeste,bossa nova,breezy,0.41,94,0.78,0.71,0.81
+32,Afterburn Arcade,Vector Bloom,drum and bass,restless,0.92,174,0.53,0.83,0.07
+33,Cherry Blossom Static,Hikari Lane,city pop,carefree,0.71,114,0.84,0.88,0.26
+34,Desert Halo,Sol Mesa,americana,yearning,0.49,102,0.61,0.52,0.79
+35,Northern Lights Run,Arctic Signal,post-rock,cinematic,0.66,108,0.55,0.47,0.61
